@@ -1,16 +1,53 @@
-# React + Vite
+# 📇 Contact Manager App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and elegant React app for managing contacts — with features like adding, editing, searching, and multi-delete.  
+Built using **React Hooks** and **CSS Modules** for modular styling.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- ➕ Add new contacts
+- ✏️ Edit existing contacts
+- 🔍 Search contacts by name or last name
+- ✅ Select multiple contacts and delete them at once
+- 💅 Clean, responsive UI with modal forms
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React.js** (Hooks: useState, useEffect)
+- **UUID** for unique ID generation
+- **CSS Modules** for scoped component styling
+
+---
+
+## 🚀 Getting Started
+
+Clone the project and install dependencies:
+
+```bash
+# Install dependencies
+npm install
+
+# Run the project in development mode
+npm run dev
+
+🧩 How It Works
+
+Click the ➕ button to open the Add Contact modal.
+
+Fill in the form and save — the new contact will appear in the list.
+
+Use ✏️ to edit or 🗑️ to delete a single contact.
+
+Switch to manage mode (⋮) to select multiple contacts for deletion.
+
+Use the search bar to quickly find contacts by name or last name
+
+👨‍💻 Developer
+
+Amirhossein esalat
+📧 sltamirhosein@gmail.com
+```
