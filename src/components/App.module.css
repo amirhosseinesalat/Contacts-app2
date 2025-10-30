@@ -1,0 +1,40 @@
+.appContainer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f7f8fa;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+}
+
+.searchBox {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 250px;
+  margin-bottom: 20px;
+  transition: 0.3s ease;
+}
+
+.searchBox:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+}
+
+.addButton {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.3s ease;
+}
+
+.addButton:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
+}

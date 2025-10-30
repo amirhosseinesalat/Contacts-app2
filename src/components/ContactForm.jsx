@@ -1,6 +1,7 @@
 import { v4 } from "uuid";
 import inputs from "../constants/input";
 import { useState, useEffect } from "react";
+import styles from "./ContactForm.module.css";
 
 function ContactForm({ onAdd, onUpdate, onClose, editingContact }) {
   const [alert, setAlert] = useState("");
@@ -20,12 +21,7 @@ function ContactForm({ onAdd, onUpdate, onClose, editingContact }) {
   };
 
   const addHandler = () => {
-    if (
-      !contact.name ||
-      !contact.lastName ||
-      !contact.email ||
-      !contact.phone
-    ) {
+    if (!contact.name || !contact.lastName || !contact.email || !contact.phone) {
       setAlert("Please enter valid data!");
       return;
     }
@@ -37,12 +33,7 @@ function ContactForm({ onAdd, onUpdate, onClose, editingContact }) {
   };
 
   const handleUpdate = () => {
-    if (
-      !contact.name ||
-      !contact.lastName ||
-      !contact.email ||
-      !contact.phone
-    ) {
+    if (!contact.name || !contact.lastName || !contact.email || !contact.phone) {
       setAlert("Please enter valid data!");
       return;
     }
@@ -53,7 +44,7 @@ function ContactForm({ onAdd, onUpdate, onClose, editingContact }) {
   };
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       {inputs.map((input, index) => (
         <input
           key={index}
@@ -66,9 +57,9 @@ function ContactForm({ onAdd, onUpdate, onClose, editingContact }) {
       ))}
 
       <button onClick={editingContact ? handleUpdate : addHandler}>
-        {editingContact ? "Save Changes" : "Add Contact"}
+        {editingContact ? "💾 Save Changes" : "➕ Add Contact"}
       </button>
-      <button onClick={onClose}>Close</button>
+      <button onClick={onClose}>❌ Close</button>
 
       {alert && <p>{alert}</p>}
     </div>

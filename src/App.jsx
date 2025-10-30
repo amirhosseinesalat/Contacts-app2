@@ -1,12 +1,13 @@
 import { useState } from "react";
 import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
-import styles from "./components/ContactForm.module.css";
+import styles from "./components/App.module.css";
 
 function App() {
   const [contacts, setContacts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingContact, setEditingContact] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const addContactHandler = (newContact) => {
     setContacts((prev) => [...prev, newContact]);
@@ -30,9 +31,25 @@ function App() {
     setShowForm(true);
   };
 
+  const filteredContacts = contacts.filter(
+    (c) =>
+      c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      c.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <>
-      <button onClick={() => setShowForm(true)}>➕ Add Contact</button>
+    <div className={styles.appContainer}>
+      <input
+        type="text"
+        placeholder="🔍 Search contacts..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className={styles.searchBox}
+      />
+
+      <button className={styles.addButton} onClick={() => setShowForm(true)}>
+        ➕
+      </button>
 
       {showForm && (
         <div className={styles.overlay}>
@@ -48,11 +65,11 @@ function App() {
       )}
 
       <ContactList
-        contacts={contacts}
+        contacts={filteredContacts}
         deleteHandler={deleteHandler}
         onEdit={editHandler}
       />
-    </>
+    </div>
   );
 }
 
