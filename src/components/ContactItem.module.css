@@ -1,44 +1,78 @@
-.contactItem {
-  border-bottom: 1px solid #e5e7eb;
-  padding: 10px 0;
+.item {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  margin: 0.5rem auto;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  transition: all 0.2s ease;
 }
 
-.contactItem p {
-  margin: 4px 0;
-  color: #374151;
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.buttons {
-  margin-top: 8px;
+.selected {
+  background-color: #e6f2ff;
+  border-left: 4px solid #007bff;
 }
 
-.buttons button {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
+.checkbox {
+  margin-right: 10px;
+  transform: scale(1.2);
   cursor: pointer;
-  margin-right: 6px;
-  font-size: 13px;
-  transition: 0.3s ease;
+  accent-color: #007bff;
 }
 
-.buttons button:first-of-type {
-  background-color: #ef4444;
+.info {
+  flex: 1;
+  text-align: left;
+}
+
+.name {
+  font-weight: 600;
+  color: #333;
+}
+
+.email,
+.phone {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actionBtn {
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+}
+
+.editBtn {
+  background-color: #007bff;
   color: white;
 }
 
-.buttons button:first-of-type:hover {
-  background-color: #dc2626;
+.editBtn:hover {
+  background-color: #0062cc;
 }
 
-.buttons button:last-of-type {
-  background-color: #3b82f6;
+.deleteBtn {
+  background-color: #dc3545;
   color: white;
 }
 
-.buttons button:last-of-type:hover {
-  background-color: #2563eb;
+.deleteBtn:hover {
+  background-color: #b52a36;
 }

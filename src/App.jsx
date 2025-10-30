@@ -8,6 +8,8 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [editingContact, setEditingContact] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedContacts, setSelectedContacts] = useState([]);
+  const [manageMode, setManageMode] = useState(false);
 
   const addContactHandler = (newContact) => {
     setContacts((prev) => [...prev, newContact]);
@@ -31,6 +33,20 @@ function App() {
     setShowForm(true);
   };
 
+  const toggleSelectHandler = (id) => {
+    setSelectedContacts((prev) =>
+      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
+    );
+  };
+
+  const deleteSelectedHandler = () => {
+    if (window.confirm("Are you sure you want to delete selected contacts?")) {
+      setContacts((prev) => prev.filter((c) => !selectedContacts.includes(c.id)));
+      setSelectedContacts([]);
+      setManageMode(false);
+    }
+  };
+
   const filteredContacts = contacts.filter(
     (c) =>
       c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -39,17 +55,34 @@ function App() {
 
   return (
     <div className={styles.appContainer}>
-      <input
-        type="text"
-        placeholder="🔍 Search contacts..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className={styles.searchBox}
-      />
+      <div className={styles.header}>
+        <input
+          type="text"
+          placeholder="🔍 Search contacts..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={styles.searchBox}
+        />
 
-      <button className={styles.addButton} onClick={() => setShowForm(true)}>
-        ➕
-      </button>
+        <div className={styles.headerButtons}>
+          <button
+            className={styles.menuButton}
+            onClick={() => setManageMode(!manageMode)}
+          >
+            ⋮
+          </button>
+
+          <button className={styles.addButton} onClick={() => setShowForm(true)}>
+            ➕
+          </button>
+        </div>
+      </div>
+
+      {manageMode && selectedContacts.length > 0 && (
+        <button className={styles.deleteSelected} onClick={deleteSelectedHandler}>
+          🗑 Delete ({selectedContacts.length})
+        </button>
+      )}
 
       {showForm && (
         <div className={styles.overlay}>
@@ -68,6 +101,9 @@ function App() {
         contacts={filteredContacts}
         deleteHandler={deleteHandler}
         onEdit={editHandler}
+        onSelect={toggleSelectHandler}
+        selectedContacts={selectedContacts}
+        manageMode={manageMode}
       />
     </div>
   );

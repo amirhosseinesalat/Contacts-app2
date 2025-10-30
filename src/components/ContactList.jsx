@@ -1,7 +1,14 @@
 import ContactItem from "./ContactItem";
 import styles from "./ContactList.module.css";
 
-function ContactList({ contacts, deleteHandler, onEdit }) {
+function ContactList({
+  contacts,
+  deleteHandler,
+  onEdit,
+  onSelect,
+  selectedContacts,
+  manageMode,
+}) {
   return (
     <div className={styles.listContainer}>
       <h3>📇 Contact List</h3>
@@ -14,6 +21,9 @@ function ContactList({ contacts, deleteHandler, onEdit }) {
               data={contact}
               deleteHandler={deleteHandler}
               onEdit={onEdit}
+              onSelect={onSelect}
+              selectedContacts={selectedContacts}
+              manageMode={manageMode}
             />
           ))}
         </ul>
