@@ -1,7 +1,12 @@
 import Contacts from "./Contacts";
+import UserProvider from "./Context/UserContext";
 
 function App() {
-  return <Contacts />;
+  return (
+    <UserProvider>
+      <Contacts />
+    </UserProvider>
+  );
 }
 
 export default App;

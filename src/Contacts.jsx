@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ContactForm from "./components/ContactForm";
 import ContactList from "./components/ContactList";
 import styles from "./components/Contacts.module.css";
+import { UserContext } from "./Context/UserContext";
 function Contacts() {
-  const [contacts, setContacts] = useState([]);
+
   const [showForm, setShowForm] = useState(false);
-  const [editingContact, setEditingContact] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedContacts, setSelectedContacts] = useState([]);
+  
+
   const [manageMode, setManageMode] = useState(false);
 
   const addContactHandler = (newContact) => {
