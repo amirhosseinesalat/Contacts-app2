@@ -4,49 +4,26 @@ import ContactList from "./components/ContactList";
 import styles from "./components/Contacts.module.css";
 import { UserContext } from "./Context/UserContext";
 function Contacts() {
-
-  const [showForm, setShowForm] = useState(false);
-  
-
-  const [manageMode, setManageMode] = useState(false);
-
-  const addContactHandler = (newContact) => {
-    setContacts((prev) => [...prev, newContact]);
-    setShowForm(false);
-  };
-
-  const deleteHandler = (id) => {
-    setContacts((prev) => prev.filter((c) => c.id !== id));
-  };
-
-  const updateHandler = (updatedContact) => {
-    setContacts((prev) =>
-      prev.map((c) => (c.id === updatedContact.id ? updatedContact : c))
-    );
-    setEditingContact(null);
-    setShowForm(false);
-  };
-
-  const editHandler = (contact) => {
-    setEditingContact(contact);
-    setShowForm(true);
-  };
-
-  const toggleSelectHandler = (id) => {
-    setSelectedContacts((prev) =>
-      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
-    );
-  };
-
-  const deleteSelectedHandler = () => {
-    if (window.confirm("Are you sure you want to delete selected contacts?")) {
-      setContacts((prev) =>
-        prev.filter((c) => !selectedContacts.includes(c.id))
-      );
-      setSelectedContacts([]);
-      setManageMode(false);
-    }
-  };
+  const {
+    contacts,
+    setContacts,
+    editingContact,
+    setEditingContact,
+    searchTerm,
+    setSearchTerm,
+    selectedContacts,
+    setSelectedContacts,
+    addContactHandler,
+    deleteHandler,
+    updateHandler,
+    editHandler,
+    toggleSelectHandler,
+    deleteSelectedHandler,
+    showForm,
+    setShowForm,
+    manageMode,
+    setManageMode,
+  } = useContext(UserContext);
 
   const filteredContacts = contacts.filter(
     (c) =>
@@ -94,24 +71,12 @@ function Contacts() {
       {showForm && (
         <div className={styles.overlay}>
           <div className={styles.formContainer}>
-            <ContactForm
-              onAdd={addContactHandler}
-              onClose={() => setShowForm(false)}
-              onUpdate={updateHandler}
-              editingContact={editingContact}
-            />
+            <ContactForm  />
           </div>
         </div>
       )}
 
-      <ContactList
-        contacts={filteredContacts}
-        deleteHandler={deleteHandler}
-        onEdit={editHandler}
-        onSelect={toggleSelectHandler}
-        selectedContacts={selectedContacts}
-        manageMode={manageMode}
-      />
+      <ContactList />
     </div>
   );
 }

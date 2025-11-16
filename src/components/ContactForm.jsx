@@ -1,68 +1,84 @@
-import { v4 } from "uuid";
-import inputs from "../constants/input";
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
+import { UserContext } from "../Context/UserContext";
 import styles from "./ContactForm.module.css";
 
-function ContactForm({ onAdd, onUpdate, onClose, editingContact }) {
-  const [alert, setAlert] = useState("");
-  const [contact, setContact] = useState(
-    editingContact || { id: "", name: "", lastName: "", email: "", phone: "" }
-  );
+function ContactForm() {
+  const {
+    addContactHandler,
+    updateHandler,
+    editingContact,
+    setEditingContact,
+    setShowForm,
+  } = useContext(UserContext);
+
+  const [form, setForm] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    phone: "",
+  });
 
   useEffect(() => {
     if (editingContact) {
-      setContact(editingContact);
+      setForm(editingContact);
     }
   }, [editingContact]);
 
   const changeHandler = (e) => {
-    const { name, value } = e.target;
-    setContact((prev) => ({ ...prev, [name]: value }));
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const addHandler = () => {
-    if (!contact.name || !contact.lastName || !contact.email || !contact.phone) {
-      setAlert("Please enter valid data!");
-      return;
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    if (editingContact) {
+      updateHandler(form);
+    } else {
+      const newContact = { ...form, id: crypto.randomUUID() };
+      addContactHandler(newContact);
     }
 
-    const newContact = { ...contact, id: v4() };
-    onAdd(newContact);
-    setContact({ name: "", lastName: "", email: "", phone: "" });
-    setAlert("");
-  };
-
-  const handleUpdate = () => {
-    if (!contact.name || !contact.lastName || !contact.email || !contact.phone) {
-      setAlert("Please enter valid data!");
-      return;
-    }
-
-    onUpdate(contact);
-    setAlert("");
-    onClose();
+    setForm({ name: "", lastName: "", email: "", phone: "" });
+    setEditingContact(null);
+    setShowForm(false);
   };
 
   return (
-    <div className={styles.formContainer}>
-      {inputs.map((input, index) => (
-        <input
-          key={index}
-          type={input.type}
-          placeholder={input.placeholder}
-          name={input.name}
-          value={contact[input.name]}
-          onChange={changeHandler}
-        />
-      ))}
+    <form className={styles.form} onSubmit={submitHandler}>
+      <input
+        name="name"
+        value={form.name}
+        onChange={changeHandler}
+        placeholder="Name"
+      />
 
-      <button onClick={editingContact ? handleUpdate : addHandler}>
-        {editingContact ? "💾 Save Changes" : "➕ Add Contact"}
+      <input
+        name="lastName"
+        value={form.lastName}
+        onChange={changeHandler}
+        placeholder="Last Name"
+      />
+
+      <input
+        name="email"
+        value={form.email}
+        onChange={changeHandler}
+        placeholder="Email"
+      />
+
+      <input
+        name="phone"
+        value={form.phone}
+        onChange={changeHandler}
+        placeholder="Phone"
+      />
+
+      <button type="submit">{editingContact ? "Update" : "Add Contact"}</button>
+
+      <button type="button" onClick={() => setShowForm(false)}>
+        Cancel
       </button>
-      <button onClick={onClose}>❌ Close</button>
-
-      {alert && <p>{alert}</p>}
-    </div>
+    </form>
   );
 }
 

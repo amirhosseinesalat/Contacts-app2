@@ -1,13 +1,16 @@
+import { useContext } from "react";
 import styles from "./ContactItem.module.css";
+import { UserContext } from "../Context/UserContext";
 
-function ContactItem({
-  data,
-  deleteHandler,
-  onEdit,
-  onSelect,
-  selectedContacts,
-  manageMode,
-}) {
+function ContactItem({ data }) {
+  const {
+    deleteHandler,
+    editHandler,
+    toggleSelectHandler,
+    selectedContacts,
+    manageMode,
+  } = useContext(UserContext);
+
   const { id, name, lastName, email, phone } = data;
 
   const isSelected = selectedContacts.includes(id);
@@ -22,7 +25,7 @@ function ContactItem({
         <input
           type="checkbox"
           checked={isSelected}
-          onChange={() => onSelect(id)}
+          onChange={() => toggleSelectHandler(id)}
           className={styles.checkbox}
         />
       )}
@@ -38,7 +41,7 @@ function ContactItem({
       {!manageMode && (
         <div className={styles.actions}>
           <button
-            onClick={() => onEdit(data)}
+            onClick={() => editHandler(data)}
             className={`${styles.actionBtn} ${styles.editBtn}`}
           >
             ✏️

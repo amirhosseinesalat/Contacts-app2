@@ -11,72 +11,44 @@
   z-index: 1000;
 }
 
-.formContainer {
-  background-color: #fff;
-  padding: 2rem;
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: white;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  width: 400px;
-  max-width: 90%;
-  animation: 0.4s ease;
-  margin: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.input {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: 0.2s;
 }
 
-.formContainer input {
-  display: block;
-  width: 100%;
-  margin-bottom: 12px;
+.input:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+}
+
+button {
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-.formContainer input:focus {
-  border-color: #3b82f6;
-  outline: none;
-}
-
-.formContainer button {
-  padding: 10px 15px;
-  margin: 5px;
-  border: none;
-  border-radius: 8px;
   cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s ease;
+  font-size: 15px;
+  border: none;
 }
 
-.formContainer button:first-of-type {
-  background-color: #3b82f6;
+button[type="submit"] {
+  background: #4caf50;
   color: white;
 }
 
-.formContainer button:first-of-type:hover {
-  background-color: #2563eb;
-}
-
-.formContainer button:last-of-type {
-  background-color: #e5e7eb;
-}
-
-.formContainer button:last-of-type:hover {
-  background-color: #d1d5db;
-}
-
-.formContainer p {
-  color: #ef4444;
-  font-size: 13px;
-  margin-top: 8px;
+button[type="button"] {
+  background: #f44336;
+  color: white;
 }
