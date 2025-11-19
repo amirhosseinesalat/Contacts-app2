@@ -14,41 +14,67 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  gap: 16px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.25s ease;
 }
 
 .input {
-  padding: 10px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border: 1px solid #dce1e6;
+  border-radius: 10px;
   font-size: 15px;
-  transition: 0.2s;
+  background: #f8fafc;
+  transition: 0.2s ease;
 }
 
 .input:focus {
-  border-color: #4a90e2;
+  background: white;
+  border-color: #2b8cff;
+  box-shadow: 0 0 0 3px rgba(48, 128, 255, 0.25);
   outline: none;
-  box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
 }
 
 button {
-  padding: 10px;
-  border-radius: 8px;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
-  font-size: 15px;
   border: none;
+  transition: 0.2s ease;
+  font-weight: 500;
 }
 
 button[type="submit"] {
-  background: #4caf50;
+  background: #2b8cff;
   color: white;
 }
 
+button[type="submit"]:hover {
+  background: #1f7ae6;
+}
+
 button[type="button"] {
-  background: #f44336;
-  color: white;
+  background: #f1f3f5;
+}
+
+button[type="button"]:hover {
+  background: #e2e6ea;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
