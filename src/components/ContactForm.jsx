@@ -44,41 +44,56 @@ function ContactForm() {
   };
 
   return (
-    <form className={styles.form} onSubmit={submitHandler}>
-      <input
-        name="name"
-        value={form.name}
-        onChange={changeHandler}
-        placeholder="Name"
-      />
+    <div className={styles.overlay}>
+      <div className={styles.modal}>
+        <form className={styles.form} onSubmit={submitHandler}>
+          <input
+            className={styles.input}
+            name="name"
+            value={form.name}
+            onChange={changeHandler}
+            placeholder="Name"
+          />
 
-      <input
-        name="lastName"
-        value={form.lastName}
-        onChange={changeHandler}
-        placeholder="Last Name"
-      />
+          <input
+            className={styles.input}
+            name="lastName"
+            value={form.lastName}
+            onChange={changeHandler}
+            placeholder="Last Name"
+          />
 
-      <input
-        name="email"
-        value={form.email}
-        onChange={changeHandler}
-        placeholder="Email"
-      />
+          <input
+            className={styles.input}
+            name="email"
+            value={form.email}
+            onChange={changeHandler}
+            placeholder="Email"
+          />
 
-      <input
-        name="phone"
-        value={form.phone}
-        onChange={changeHandler}
-        placeholder="Phone"
-      />
+          <input
+            className={styles.input}
+            name="phone"
+            value={form.phone}
+            onChange={changeHandler}
+            placeholder="Phone"
+          />
 
-      <button type="submit">{editingContact ? "Update" : "Add Contact"}</button>
-
-      <button type="button" onClick={() => setShowForm(false)}>
-        Cancel
-      </button>
-    </form>
+          <div className={styles.btnRow}>
+            <button type="submit" className={styles.buttonPrimary}>
+              {editingContact ? "Update" : "Add Contact"}
+            </button>
+            <button
+              type="button"
+              className={styles.buttonSecondary}
+              onClick={() => setShowForm(false)}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
 

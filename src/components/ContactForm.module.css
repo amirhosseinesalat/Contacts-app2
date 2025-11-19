@@ -4,77 +4,89 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
 
+.modal {
+  width: 100%;
+  max-width: 380px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 24px;
-  background: #ffffff;
-  border-radius: 18px;
-  width: 100%;
-  max-width: 360px;
-  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
-  animation: fadeIn 0.25s ease;
+  gap: 14px;
+  background: #ffffff; /* کاملاً سفید */
+  padding: 20px 22px;
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  animation: pop 0.2s ease-out;
 }
 
+/* شبیه تلگرام: input سفید خالص */
 .input {
-  padding: 12px 16px;
-  border: 1px solid #dce1e6;
+  padding: 12px 14px;
+  border: 1px solid #cdd4db;
   border-radius: 10px;
+  background: #ffffff;
   font-size: 15px;
-  background: #f8fafc;
   transition: 0.2s ease;
 }
 
 .input:focus {
-  background: white;
-  border-color: #2b8cff;
-  box-shadow: 0 0 0 3px rgba(48, 128, 255, 0.25);
+  border-color: #0088cc; /* رنگ تلگرام */
+  box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.25);
   outline: none;
 }
 
-button {
+/* دکمه‌ها سبک تلگرام */
+.btnRow {
+  display: flex;
+  gap: 10px;
+}
+
+.buttonPrimary {
+  flex: 1;
+  background: #0088cc;
+  color: white;
   padding: 12px;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
+  border-radius: 12px;
   border: none;
-  transition: 0.2s ease;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.buttonPrimary:hover {
+  background: #0077b3;
+}
+
+.buttonSecondary {
+  flex: 1;
+  background: #f2f4f7;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
   font-weight: 500;
 }
 
-button[type="submit"] {
-  background: #2b8cff;
-  color: white;
+.buttonSecondary:hover {
+  background: #e4e6eb;
 }
 
-button[type="submit"]:hover {
-  background: #1f7ae6;
-}
-
-button[type="button"] {
-  background: #f1f3f5;
-}
-
-button[type="button"]:hover {
-  background: #e2e6ea;
-}
-
-
-@keyframes fadeIn {
+@keyframes pop {
   from {
+    transform: scale(0.95);
     opacity: 0;
-    transform: translateY(5px);
   }
   to {
+    transform: scale(1);
     opacity: 1;
-    transform: translateY(0);
   }
 }

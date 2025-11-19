@@ -1,78 +1,99 @@
+/* ContactItem.module.css - Material redesign */
 .item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background-color: #fff;
-  margin: 0.5rem auto;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 500px;
-  transition: all 0.2s ease;
+  gap: 12px;
+  background: #fff;
+  padding: 14px;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(16,24,40,0.04);
+  transition: transform .12s ease, box-shadow .12s ease;
 }
 
 .item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(16,24,40,0.08);
 }
 
 .selected {
-  background-color: #e6f2ff;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid #1976d2;
+  background: linear-gradient(90deg, rgba(25,118,210,0.04), #fff);
 }
 
 .checkbox {
-  margin-right: 10px;
-  transform: scale(1.2);
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid #cfd8dc;
+  display: inline-block;
+  position: relative;
   cursor: pointer;
-  accent-color: #007bff;
+}
+.checkbox:checked {
+  background: #1976d2;
+  border-color: #1976d2;
+}
+.checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 6px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
 .info {
   flex: 1;
-  text-align: left;
+  min-width: 0;
 }
 
 .name {
   font-weight: 600;
-  color: #333;
+  color: #0f172a;
+  margin-bottom: 4px;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.email,
-.phone {
-  font-size: 0.9rem;
-  color: #666;
+.email, .phone {
+  font-size: 13px;
+  color: #616161;
 }
 
 .actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 8px;
+  align-items: center;
 }
 
 .actionBtn {
-  border: none;
-  padding: 0.4rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 10px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: 0.2s ease;
+  border: none;
+  font-size: 13px;
 }
 
 .editBtn {
-  background-color: #007bff;
-  color: white;
+  background: #1976d2;
+  color: #fff;
 }
-
-.editBtn:hover {
-  background-color: #0062cc;
-}
+.editBtn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(25,118,210,0.12); }
 
 .deleteBtn {
-  background-color: #dc3545;
-  color: white;
+  background: #ef5350;
+  color: #fff;
 }
-
-.deleteBtn:hover {
-  background-color: #b52a36;
-}
+.deleteBtn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(239,83,80,0.12); }
