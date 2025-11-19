@@ -1,37 +1,39 @@
-/* Contacts.module.css - Material redesign */
 .appContainer {
   max-width: 880px;
-  margin: 2.2rem auto;
-  padding: 20px;
-  background: #f5f7fa;
-  border-radius: 12px;
-  font-family: "Roboto", "Poppins", sans-serif;
-  color: #212121;
+  margin: 2rem auto;
+  padding: 22px;
+  background: #f8f9fc;
+  border-radius: 22px;
+  font-family: "Inter", "Poppins", sans-serif;
+  color: #1c1f23;
   box-sizing: border-box;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
+/* ---------------- Header ---------------- */
 .header {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .searchBox {
   flex: 1;
-  padding: 12px 16px;
+  height: 46px;
+  padding: 0 16px;
   font-size: 15px;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-  background: #ffffff;
-  transition: box-shadow .18s ease, border-color .18s ease;
+  border-radius: 14px;
+  border: 1px solid #e3e7ee;
+  background: #fff;
+  transition: 0.18s ease;
 }
 
 .searchBox:focus {
   outline: none;
-  border-color: #1976d2;
-  box-shadow: 0 4px 18px rgba(25,118,210,0.12);
+  border-color: #2481e6;
+  box-shadow: 0 4px 18px rgba(36, 129, 230, 0.12);
 }
 
 .headerButtons {
@@ -40,68 +42,78 @@
   align-items: center;
 }
 
-.addButton, .menuButton {
+.addButton,
+.menuButton {
   width: 44px;
   height: 44px;
-  border-radius: 8px;
+  border-radius: 14px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   border: none;
-  transition: transform .12s ease, box-shadow .12s ease;
-  box-shadow: 0 6px 14px rgba(33,33,33,0.06);
+  transition: 0.16s ease;
+  background: #fff;
+  color: #2481e6;
+  font-size: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.addButton:hover,
+.menuButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
 }
 
 .addButton {
-  background: linear-gradient(180deg,#22c55e,#16a34a);
+  background: linear-gradient(145deg, #2aa4ff, #1d8eeb);
   color: white;
-  font-size: 18px;
 }
-
-.addButton:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(34,197,94,0.14); }
-
-.menuButton {
-  background: #1976d2;
-  color: white;
-  font-size: 18px;
-}
-
-.menuButton:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(25,118,210,0.12); }
 
 .deleteSelected {
-  background: #d32f2f;
+  background: #ff4c4c;
   color: #fff;
-  border: none;
   padding: 8px 14px;
-  border-radius: 8px;
+  border-radius: 12px;
+  border: none;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(211,47,47,0.12);
+  font-size: 14px;
+  box-shadow: 0 10px 20px rgba(255, 76, 76, 0.18);
+  transition: 0.16s ease;
 }
 
-.deleteSelected:hover { transform: translateY(-2px); }
+.deleteSelected:hover {
+  transform: translateY(-2px);
+}
 
+/* --------------- Modal --------------- */
 .overlay {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1200;
+
+  backdrop-filter: blur(4px);
+  z-index: 999;
 }
 
 .formContainer {
-  width: 420px;
+  width: 430px;
   max-width: calc(100% - 32px);
-  border-radius: 12px;
   background: #fff;
-  box-shadow: 0 20px 50px rgba(32,33,36,0.12);
-  padding: 20px;
-  transform-origin: center;
-  animation: mdPop .18s ease;
+  border-radius: 20px;
+  padding: 26px;
+  animation: pop 0.22s ease;
 }
 
-@keyframes mdPop {
-  from { transform: translateY(8px) scale(.995); opacity: 0; }
-  to { transform: translateY(0) scale(1); opacity: 1; }
+@keyframes pop {
+  from {
+    transform: scale(0.96) translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }

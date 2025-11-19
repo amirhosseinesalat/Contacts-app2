@@ -1,47 +1,48 @@
-/* ContactItem.module.css - Material redesign */
 .item {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #fff;
-  padding: 14px;
-  border-radius: 8px;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 16px;
   width: 100%;
-  box-shadow: 0 8px 20px rgba(16,24,40,0.04);
-  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: 0.18s ease;
 }
 
 .item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(16,24,40,0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
 }
 
 .selected {
-  border-left: 4px solid #1976d2;
-  background: linear-gradient(90deg, rgba(25,118,210,0.04), #fff);
+  border-left: 5px solid #2481e6;
+  background: linear-gradient(90deg, rgba(36, 129, 230, 0.06), #ffffff);
 }
 
 .checkbox {
   appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-  border: 1.5px solid #cfd8dc;
-  display: inline-block;
-  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid #cfd8dc;
   cursor: pointer;
+  transition: 0.15s ease;
 }
+
 .checkbox:checked {
-  background: #1976d2;
-  border-color: #1976d2;
+  background: #2481e6;
+  border-color: #2481e6;
 }
+
 .checkbox:checked::after {
   content: "";
-  position: absolute;
-  left: 4px;
-  top: 0px;
+  position: relative;
+  left: 5.5px;
+  top: 2px;
   width: 6px;
-  height: 10px;
+  height: 12px;
   border: solid #fff;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
@@ -49,51 +50,48 @@
 
 .info {
   flex: 1;
-  min-width: 0;
 }
 
 .name {
   font-weight: 600;
   color: #0f172a;
   margin-bottom: 4px;
-  font-size: 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 16px;
 }
 
-.email, .phone {
-  font-size: 13px;
-  color: #616161;
+.email,
+.phone {
+  font-size: 13.5px;
+  color: #6c727b;
 }
 
 .actions {
   display: flex;
-  gap: 8px;
-  align-items: center;
+  gap: 10px;
 }
 
 .actionBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  height: 36px;
-  padding: 0 10px;
-  border-radius: 8px;
-  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 10px;
   border: none;
+  cursor: pointer;
   font-size: 13px;
 }
 
 .editBtn {
-  background: #1976d2;
+  background: #2481e6;
   color: #fff;
 }
-.editBtn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(25,118,210,0.12); }
+.editBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(36, 129, 230, 0.14);
+}
 
 .deleteBtn {
-  background: #ef5350;
+  background: #ff4c4c;
   color: #fff;
 }
-.deleteBtn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(239,83,80,0.12); }
+.deleteBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255, 76, 76, 0.14);
+}

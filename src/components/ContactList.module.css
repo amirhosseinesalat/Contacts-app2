@@ -1,17 +1,14 @@
-/* ContactList.module.css - Material redesign */
 .listContainer {
-  background: transparent;
-  padding: 0;
-  margin: 0 auto;
   width: 100%;
-  max-width: 880px;
+  padding: 0;
+  margin-top: 20px;
 }
 
 .listContainer h3 {
-  margin: 8px 0 14px;
+  margin-bottom: 16px;
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: #1c1f23;
 }
 
 .listContainer ul {
@@ -21,11 +18,12 @@
   display: grid;
   gap: 12px;
 }
+
 .listContainer p {
-  color: #616161;
-  padding: 24px;
+  color: #6a6d75;
+  padding: 28px;
   text-align: center;
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+  border-radius: 16px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
 }
