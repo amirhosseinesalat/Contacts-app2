@@ -17,6 +17,7 @@ function ContactForm() {
     email: "",
     phone: "",
   });
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (editingContact) {
@@ -27,9 +28,36 @@ function ContactForm() {
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+  const validate = () => {
+    const newErrors = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = "Name cannot be empty";
+    }
+
+    if (!form.lastName.trim()) {
+      newErrors.lastName = "Last name cannot be empty";
+    }
+
+    if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      newErrors.email = "Invalid email format";
+    }
+
+    if (!/^\d{8,15}$/.test(form.phone)) {
+      newErrors.phone = "Phone must be digits only (8–15 characters)";
+    }
+
+    return newErrors;
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     if (editingContact) {
       updateHandler(form);
@@ -54,6 +82,7 @@ function ContactForm() {
             onChange={changeHandler}
             placeholder="Name"
           />
+          {errors.name && <p className={styles.error}>{errors.name}</p>}
 
           <input
             className={styles.input}
@@ -62,6 +91,7 @@ function ContactForm() {
             onChange={changeHandler}
             placeholder="Last Name"
           />
+          {errors.lastName && <p className={styles.error}>{errors.lastName}</p>}
 
           <input
             className={styles.input}
@@ -70,6 +100,7 @@ function ContactForm() {
             onChange={changeHandler}
             placeholder="Email"
           />
+          {errors.email && <p className={styles.error}>{errors.email}</p>}
 
           <input
             className={styles.input}
@@ -78,6 +109,7 @@ function ContactForm() {
             onChange={changeHandler}
             placeholder="Phone"
           />
+          {errors.phone && <p className={styles.error}>{errors.phone}</p>}
 
           <div className={styles.btnRow}>
             <button type="submit" className={styles.buttonPrimary}>
