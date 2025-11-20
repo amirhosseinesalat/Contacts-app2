@@ -56,6 +56,7 @@ function ContactForm() {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      toast.warning("Please fix the highlighted fields ⚠️");
       return;
     }
 

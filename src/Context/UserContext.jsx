@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 
 export const UserContext = createContext();
 
@@ -13,16 +14,25 @@ function UserProvider({ children }) {
   const [manageMode, setManageMode] = useState(false);
   const addContactHandler = (newContact) => {
     setContacts((prev) => [...prev, newContact]);
+
+    toast.success("Contact added successfully! 🎉", { icon: "📇" });
+
     setShowForm(false);
   };
+
   const deleteHandler = (id) => {
     setContacts((prev) => prev.filter((c) => c.id !== id));
+
+    toast.error("Contact deleted 🗑️");
   };
 
   const updateHandler = (updatedContact) => {
     setContacts((prev) =>
       prev.map((c) => (c.id === updatedContact.id ? updatedContact : c))
     );
+
+    toast.info("Contact updated ✏️");
+
     setEditingContact(null);
     setShowForm(false);
   };
@@ -39,14 +49,12 @@ function UserProvider({ children }) {
   };
 
   const deleteSelectedHandler = () => {
-    if (window.confirm("Are you sure you want to delete selected contacts?")) {
-      setContacts((prev) =>
-        prev.filter((c) => !selectedContacts.includes(c.id))
-      );
-      setSelectedContacts([]);
-      setManageMode(false);
-    }
+    setContacts((prev) => prev.filter((c) => !selectedContacts.includes(c.id)));
+    setSelectedContacts([]);
+
+    toast.error("Selected contacts removed!", { icon: "🗑️" });
   };
+
   return (
     <UserContext.Provider
       value={{
