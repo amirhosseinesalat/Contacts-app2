@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 import styles from "./ContactForm.module.css";
+import FormInput from "../inputs/FormInput";
 
 function ContactForm() {
   const {
@@ -76,41 +77,34 @@ function ContactForm() {
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <form className={styles.form} onSubmit={submitHandler}>
-          <input
-            className={styles.input}
-            name="name"
+          <FormInput
+            placeholder={"Name"}
             value={form.name}
+            name={"name"}
             onChange={changeHandler}
-            placeholder="Name"
+            error={errors.name}
           />
-          {errors.name && <p className={styles.error}>{errors.name}</p>}
-
-          <input
-            className={styles.input}
-            name="lastName"
+          <FormInput
+            placeholder={"lastName"}
             value={form.lastName}
+            name={"lastName"}
             onChange={changeHandler}
-            placeholder="Last Name"
+            error={errors.lastName}
           />
-          {errors.lastName && <p className={styles.error}>{errors.lastName}</p>}
-
-          <input
-            className={styles.input}
-            name="email"
+          <FormInput
+            placeholder={"email"}
             value={form.email}
+            name={"email"}
             onChange={changeHandler}
-            placeholder="Email"
+            error={errors.email}
           />
-          {errors.email && <p className={styles.error}>{errors.email}</p>}
-
-          <input
-            className={styles.input}
-            name="phone"
+          <FormInput
+            placeholder={"phone"}
             value={form.phone}
+            name={"phone"}
             onChange={changeHandler}
-            placeholder="Phone"
+            error={errors.phone}
           />
-          {errors.phone && <p className={styles.error}>{errors.phone}</p>}
 
           <div className={styles.btnRow}>
             <button type="submit" className={styles.buttonPrimary}>
