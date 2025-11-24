@@ -1,7 +1,19 @@
-import { yupResolver } from "@hookform/resolvers/yup/src/yup.js";
-yup.object({
-  name: "Name is required",
-  lastName: "Last name is required",
-  email: "Invalid email format",
-  phone: "Phone must be between 8 and 15 characters",
+import * as yup from "yup";
+
+const contactSchema = yup.object({
+  name: yup.string().trim().required("Name is required"),
+
+  lastName: yup.string().trim().required("Last name is required"),
+
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("Email is required"),
+
+  phone: yup
+    .string()
+    .matches(/^\d+$/, "Phone must contain only digits")
+    .min(8, "Phone must be at least 8 digits")
+    .max(15, "Phone must be at most 15 digits"),
 });
+export default contactSchema;

@@ -1,7 +1,10 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 import styles from "./ContactForm.module.css";
 import FormInput from "../inputs/FormInput";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import contactSchema from "../validation/contactSchema";
 
 function ContactForm() {
   const {
@@ -12,63 +15,29 @@ function ContactForm() {
     setShowForm,
   } = useContext(UserContext);
 
-  const [form, setForm] = useState({
-    name: "",
-    lastName: "",
-    email: "",
-    phone: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(contactSchema),
   });
-  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (editingContact) {
-      setForm(editingContact);
+      reset(editingContact);
     }
-  }, [editingContact]);
+  }, [editingContact, reset]);
 
-  const changeHandler = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const validate = () => {
-    const newErrors = {};
-
-    if (!form.name.trim()) {
-      newErrors.name = "Name cannot be empty";
-    }
-
-    if (!form.lastName.trim()) {
-      newErrors.lastName = "Last name cannot be empty";
-    }
-
-    if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      newErrors.email = "Invalid email format";
-    }
-
-    if (!/^\d{8,15}$/.test(form.phone)) {
-      newErrors.phone = "Phone must be digits only (8–15 characters)";
-    }
-
-    return newErrors;
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      toast.warning("Please fix the highlighted fields ⚠️");
-      return;
-    }
-
+  const submitHandler = (data) => {
     if (editingContact) {
-      updateHandler(form);
+      updateHandler({ ...editingContact, ...data });
     } else {
-      const newContact = { ...form, id: crypto.randomUUID() };
-      addContactHandler(newContact);
+      addContactHandler({ ...data, id: crypto.randomUUID() });
     }
 
-    setForm({ name: "", lastName: "", email: "", phone: "" });
+    reset();
     setEditingContact(null);
     setShowForm(false);
   };
@@ -76,40 +45,37 @@ function ContactForm() {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <form className={styles.form} onSubmit={submitHandler}>
+        <form className={styles.form} onSubmit={handleSubmit(submitHandler)}>
+          
           <FormInput
-            placeholder={"Name"}
-            value={form.name}
-            name={"name"}
-            onChange={changeHandler}
-            error={errors.name}
+            placeholder="Name"
+            error={errors.name?.message}
+            {...register("name")}
           />
+
           <FormInput
-            placeholder={"lastName"}
-            value={form.lastName}
-            name={"lastName"}
-            onChange={changeHandler}
-            error={errors.lastName}
+            placeholder="Last Name"
+            error={errors.lastName?.message}
+            {...register("lastName")}
           />
+
           <FormInput
-            placeholder={"email"}
-            value={form.email}
-            name={"email"}
-            onChange={changeHandler}
-            error={errors.email}
+            placeholder="Email"
+            error={errors.email?.message}
+            {...register("email")}
           />
+
           <FormInput
-            placeholder={"phone"}
-            value={form.phone}
-            name={"phone"}
-            onChange={changeHandler}
-            error={errors.phone}
+            placeholder="Phone"
+            error={errors.phone?.message}
+            {...register("phone")}
           />
 
           <div className={styles.btnRow}>
             <button type="submit" className={styles.buttonPrimary}>
               {editingContact ? "Update" : "Add Contact"}
             </button>
+
             <button
               type="button"
               className={styles.buttonSecondary}
