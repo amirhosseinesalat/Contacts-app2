@@ -1,77 +1,77 @@
 📇 Contact Manager App
 
-A clean and modern React application for managing contacts.
-Built with React Hooks, Context API, React-Hook-Form, Yup, and CSS Modules.
+A simple and modern contact manager built with React.
+This project focuses on clean UI, proper state management, and form validation.
 
-✨ Features
+The main goal of this app was to practice working with forms, global state, and reusable components in a real-world scenario.
 
-➕ Add new contacts
+Features
 
-✏️ Edit existing contacts
+Add new contacts
 
-🔍 Search contacts by name or last name
+Edit existing contacts
 
-🗑️ Delete single or multiple contacts
+Search contacts by name or last name
 
-🧩 Real-time form validation using React Hook Form + Yup
+Delete single or multiple contacts
 
-📦 Global state using Context API
+Real-time form validation
 
-💅 Styled using CSS Modules
+Global state management
 
-📱 Responsive and user-friendly UI
+Responsive and clean UI
 
-🛠️ Technologies Used
+Tech Stack
 
 React.js
 
-Context API for global state
-
-React Hook Form for form management
-
-Yup for validation
-
-CSS Modules
-
-crypto.randomUUID() for unique ID generation
-
-🚀 Getting Started
-Clone the project:
-git clone <your-repo-link>
-cd contact-manager
-
-Install dependencies:
-npm install
-
-Run the app:
-npm run dev
-
-🧩 How It Works
-➕ Adding a Contact
-
-Click the Add button → modal opens → fill the form → submit.
-
-✏️ Editing
-
-Click on the Edit icon → form pre-fills → update and save.
-
-🔍 Searching
-
-The search bar filters contacts in real-time by name or last name.
-
-🗑️ Multi-Delete
-
-Switch to manage mode → select multiple contacts → delete all at once.
-
-🧮 Validation
-
-All inputs are validated using:
+Context API
 
 React Hook Form
 
-Yup Schema
+Yup
 
-📂 Project Structure
+CSS Modules
+
+Unique IDs are generated using crypto.randomUUID().
+
+Getting Started
+
+Clone the repository:
+
+git clone https://github.com/your-username/contact-manager.git
+cd contact-manager
+
+Install dependencies:
+
+npm install
+
+Run the project:
+
+npm run dev
+
+Application Flow
+Adding a Contact
+
+Click on the Add button, fill out the form, and submit to add a new contact.
+
+Editing a Contact
+
+Click the Edit icon on a contact. The form will be pre-filled, allowing you to update the information.
+
+Searching
+
+Use the search input to filter contacts by first name or last name in real time.
+
+Deleting Contacts
+
+You can delete contacts individually or switch to manage mode and remove multiple contacts at once.
+
+Validation
+
+All form inputs are validated using React Hook Form with a Yup schema.
+
+Project Structure
 src/
 ├── components/
 │ ├── ContactForm.jsx
@@ -79,14 +79,14 @@ src/
 │ └── ContactItem.jsx
 ├── inputs/
 │ └── FormInput.jsx
-├── Context/
+├── context/
 │ └── UserContext.jsx
 ├── validation/
 │ └── contactSchema.js
 ├── App.jsx
 └── main.jsx
 
-👨‍💻 Developer
+Developer
 
 Amirhossein Esalat
-📧 sltamirhosein@gmail.com
+Email: sltamirhosein@gmail.com
