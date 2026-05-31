@@ -39,8 +39,8 @@ Getting Started
 
 Clone the repository:
 
-git clone https://github.com/your-username/contact-manager.git
-cd contact-manager
+git clone https://github.com/amirhosseinesalat/Contacts-app2
+
 
 Install dependencies:
 
